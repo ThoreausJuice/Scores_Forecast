@@ -39,7 +39,7 @@ def Create_Generation(Original_String):
 	Flag = 1
 	# 第一次处理
 	First_Processing = Original_String.split('\n')
-	# 将 成绩和 矩阵追加至数组末端
+	# 将 "成绩和"矩阵 追加至数组末端
 	for line in First_Processing:
 		# 对每行进行第二次处理
 		Second_Processing = line.split(',')
@@ -56,7 +56,7 @@ def Create_Generation(Original_String):
 			Grades_Matrix = Matrix_Generation_function(Second_Processing, Grades_Matrix)
 	Reference_Match.append(Grades_Matrix)
 
-	# 将 成绩和 矩阵处理为平均成绩矩阵
+	# 将 "成绩和"矩阵 处理为平均成绩矩阵
 	for ele in Reference_Match:
 		for i in range(0, 30):
 			if ele[i] != 0:
