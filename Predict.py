@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
 from Array_of_Matrix import *
-# from math import floor
 import numpy as np
 from random import *
 
@@ -79,11 +78,10 @@ for x in Test_Group:
 	M_Number = round((Min_Matrix[z] - round(Min_Matrix[z])) * 10000) / 100
 	X_Number = round((x[z] - round(x[z])) * 10000) / 100
 
-	# print(Min_Matrix[z], x[z], M_Number, X_Number)
 	if Min_Matrix[z] * x[z] != 0:
 		Forecast_value = round((Min_Matrix[z] * M_Number + x[z] * X_Number) / (M_Number + X_Number) + 0.5) #+ randrange(-1, 1)
 	# 当预测值为nan时,取所有成绩有效均值
-	else:# if Forecast_value != Forecast_value:
+	else:
 		Forecast_value = 0
 		for ele in x:
 			Forecast_value += round(ele ** 2 / 100) + ele / 10000
