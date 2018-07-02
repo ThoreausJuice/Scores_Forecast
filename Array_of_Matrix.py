@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
 import numpy as np
-# from math import floor
 
 # 有效成绩矩阵生成函数
 def Matrix_Generation_function(Second_Processing, Grades_Matrix):
@@ -32,7 +31,7 @@ def Matrix_Generation_function(Second_Processing, Grades_Matrix):
 def Create_Generation(Original_String):
 	# 构造参照UUID
 	Reference_UUID = None
-	# 构造3行6列的0成绩矩阵
+	# 构造5行6列的0成绩矩阵
 	Grades_Matrix = np.zeros(30, float)
 	# 构造参照数组
 	Reference_Match = []
