@@ -35,7 +35,7 @@ Forecast_value = None
 # 位移变量i
 i = 0
 # 预测区间
-Interval = 6
+Interval = 10
 # 预测错误计数
 fail = 0
 
