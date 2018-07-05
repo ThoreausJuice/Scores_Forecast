@@ -9,17 +9,31 @@ import sys
 np.seterr(all = 'raise')
 
 # 读取待预测者及待预测科目信息
-Student_id = '5120150697'
+Student_id = sys.argv[1]
 with open('studentid.csv', 'r') as Original_File:
 	Original_String = Original_File.read().split('\n')
 	for ele in Original_String:
 		Second_Processing = ele.split(',')
 		if Second_Processing[0] == Student_id:
 			UUID = Second_Processing[1]
-# UUID = '419c6fac-21aa-11e8-8234-9061ae17b27c'
-Subject_type = '必修'
-Test_Type = '正常考试'
-crs = '2'
+
+Subject_type = sys.argv[2]
+if Subject_type == '1':
+	Subject_type = '必修'
+elif Subject_type == '2':
+	Subject_type = '限选'
+elif Subject_type == '3':
+	Subject_type = '任选'
+
+Test_Type = sys.argv[3]
+if Test_Type == '1':
+	Test_Type = '正常考试'
+elif Test_Type == '2':
+	Test_Type = '补考'
+elif Test_Type == '3':
+	Test_Type = '重修'
+
+crs = sys.argv[4]
 
 # 读取对照组
 with open('exam.csv', 'r') as Original_File:
@@ -61,7 +75,7 @@ z = None
 # 待预测成绩
 Forecast_value = None
 # 预测区间
-Interval = 10
+Interval = 5
 
 for x in Test_Group:
 	# 对单元测试进行分片处理
@@ -119,12 +133,12 @@ for x in Test_Group:
 			Abnormal += 1
 	if Abnormal == 12:
 		Forecast_value += 5
-	if Abnormal <= 6:
-		Forecast_value -= 5
+	# if Abnormal <= 6:
+	# 	Forecast_value -= 5
 	
 	# 对优秀值进行回归
-	if Forecast_value >= 95:
-		Forecast_value = 100 - Interval
+	if Forecast_value >= 100:
+		Forecast_value = 100
 	if Forecast_value <= 5:
 		Forecast_value = Interval
 
