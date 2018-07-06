@@ -1,4 +1,3 @@
-
 #!/usr/bin/env python3
 # 网页应用程序版
 
@@ -10,18 +9,15 @@ import sys
 np.seterr(all = 'raise')
 
 # 读取待预测者及待预测科目信息
-with open('1.txt', 'r') as s:
-	s = s.read().split(',')
-Student_id = s[0]
-
-with open('studentid.csv', 'r', encoding = 'utf-8') as Original_File:
+Student_id = sys.argv[1]
+with open('studentid.csv', 'r') as Original_File:
 	Original_String = Original_File.read().split('\n')
 	for ele in Original_String:
 		Second_Processing = ele.split(',')
 		if Second_Processing[0] == Student_id:
 			UUID = Second_Processing[1]
 
-Subject_type = s[1]
+Subject_type = sys.argv[2]
 if Subject_type == '1':
 	Subject_type = '必修'
 elif Subject_type == '2':
@@ -29,7 +25,7 @@ elif Subject_type == '2':
 elif Subject_type == '3':
 	Subject_type = '任选'
 
-Test_Type = s[3]
+Test_Type = sys.argv[3]
 if Test_Type == '1':
 	Test_Type = '正常考试'
 elif Test_Type == '2':
@@ -37,10 +33,10 @@ elif Test_Type == '2':
 elif Test_Type == '3':
 	Test_Type = '重修'
 
-crs = s[2]
+crs = sys.argv[4]
 
 # 读取对照组
-with open('exam.csv', 'r', encoding = 'utf-8') as Original_File:
+with open('exam.csv', 'r') as Original_File:
 	Original_String = Original_File.read()
 
 # 第一次处理
@@ -146,5 +142,4 @@ for x in Test_Group:
 	if Forecast_value <= 5:
 		Forecast_value = Interval
 
-with open('2.txt', 'w') as f:
-	f.write(str(Forecast_value))
+print(Forecast_value)

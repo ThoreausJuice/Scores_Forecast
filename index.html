@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+	<title>学生成绩预测</title>
+	<meta charset="utf-8">
+	<style>
+		body {
+			padding-top: 40px;
+			padding-bottom: 40px;
+			background-color: #eee;
+		}
+
+		.form-signin {
+			max-width: 330px;
+			padding: 15px;
+			margin: 0 auto;
+		}
+
+		.form-signin .form-signin-heading,
+		.form-signin .checkbox {
+			margin-bottom: 10px;
+		}
+
+		.form-signin .checkbox {
+			font-weight: normal;
+		}
+
+		.form-signin .form-control {
+			position: relative;
+			height: auto;
+			-webkit-box-sizing: border-box;
+			-moz-box-sizing: border-box;
+			box-sizing: border-box;
+			padding: 10px;
+			font-size: 16px;
+		}
+
+		.form-signin .form-control:focus {
+			z-index: 2;
+		}
+
+		.form-signin input[type="email"] {
+			margin-bottom: -1px;
+			border-bottom-right-radius: 0;
+			border-bottom-left-radius: 0;
+		}
+
+		.form-signin input[type="password"] {
+			margin-bottom: 10px;
+			border-top-left-radius: 0;
+			border-top-right-radius: 0;
+		}
+	</style>
+	<!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	    crossorigin="anonymous">
+
+	<!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
+	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+	    crossorigin="anonymous">
+
+	<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+	<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+	    crossorigin="anonymous"></script>
+
+	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	<!--[if lt IE 9]>
+	<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+	<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+	<script>
+		$(document).ready(function () {
+			$("#predict_button").click(function () {
+				var requestURL = "predict_api.php?studentid=" + $("#studentid").val() + "&coursetype=" + $("#coursetype").val() +
+					"&coursescore=" + $("#coursescore").val() + "&examtype=" + $("#examtype").val();
+				$("#score").html("正在计算");
+				$.get(requestURL, function (data, status) {
+					$("#score").html(data);
+				});
+			});
+		});
+	</script>
+</head>
+
+<body>
+	<div class="container">
+
+		<form class="form-signin">
+			<h4 class="form-signin-heading">学号</h4>
+			<input type="text" class="form-control" id="studentid" placeholder="5120150747">
+			<h4 class="form-signin-heading">学科类型</h4>
+			<select class="form-control" id="coursetype">
+				<option value="1">必修</option>
+				<option value="2">限选</option>
+				<option value="3">任选</option>
+			</select>
+			<h4 class="form-signin-heading">学分</h4>
+			<select class="form-control" id="coursescore">
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+				<option value="6">6分及以上</option>
+			</select>
+			<h4 class="form-signin-heading">考试类型</h4>
+			<select class="form-control" id="examtype">
+				<option value="1">正常考试</option>
+				<option value="2">补考及重考</option>
+				<option value="3">重修</option>
+			</select>
+			<h4 class="form-signin-heading">预测成绩</h4>
+			<label id="score"></label>
+		</form>
+		<div class="col-sm-4"></div>
+		<div class="col-sm-4">
+			<button class="btn btn-lg btn-primary btn-block" id="predict_button">预测</button>
+		</div>
+	</div>
+	<!-- /container -->
+
+
+	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+	<script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+</body>
+
+
+</html>
