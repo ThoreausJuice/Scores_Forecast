@@ -1,4 +1,3 @@
-
 #!/usr/bin/env python3
 # 网页应用程序版
 
@@ -31,9 +30,9 @@ if Student_id.isdigit() == True:
 				BK = 1
 
 	if BK == 0:
-		with open('2.txt', 'w') as f:
+		with open('2.txt', 'w', encoding = 'utf-8') as f:
 			f.write('学号输入有误，未找到该学生')
-		exit(0)
+		sys.exit(0)
 
 	Subject_type = s[1]
 	if Subject_type == '1':
@@ -163,5 +162,5 @@ if Student_id.isdigit() == True:
 	with open('2.txt', 'w') as f:
 		f.write(str(Forecast_value))
 else:
-	with open('2.txt', 'w') as f:
+	with open('2.txt', 'w', encoding = 'utf-8') as f:
 		f.write('输入有误，请输入学号')
